@@ -8,7 +8,7 @@
 - [ ] Validate an explicitly confirmed single-target live unlock, callback acknowledgement, refreshed state, independent Steam inspection and a later restart read.
 - [ ] Validate the live missing-only batch and error/reconnect behavior without implying rollback after timeout.
 - [ ] Resolve Valve native-library redistribution terms; keep public packages explicit about the separate setup until then.
-- [ ] Run the prepared workflows on GitHub and inspect their artifacts before describing hosted CI as passing.
+- [x] First hosted main-branch Build and test workflow passed; validation reports were uploaded.
 
 ## Next improvements
 

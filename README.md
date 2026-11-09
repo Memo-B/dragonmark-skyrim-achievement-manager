@@ -2,10 +2,10 @@
 
 ![Dragonmark — Your achievements. A clearer view.](assets/branding/hero.png)
 
-[![GitHub Actions: not published](https://img.shields.io/badge/GitHub_Actions-not_published-grey?logo=githubactions)](.github/workflows/ci.yml)
+[![Build and test](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml)
 [![MIT license](https://img.shields.io/badge/license-MIT-D8BB7D)](LICENSE)
 [![Windows x64](https://img.shields.io/badge/platform-Windows_x64-0078D4)](docs/compatibility.md)
-[![Experimental preview](https://img.shields.io/badge/status-experimental_preview-b8860b)](docs/VALIDATION.md)
+[![Experimental preview](https://img.shields.io/badge/status-public_beta-b8860b)](docs/VALIDATION.md)
 
 **Your achievements. A clearer view.** Dragonmark is an original, English-language Windows desktop app for browsing and managing **Skyrim Special Edition / Anniversary Edition Steam achievements** (App ID **489830**). Inspect your progress, unlock a selection, or review all missing achievements in one confirmed batch.
 

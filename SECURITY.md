@@ -6,7 +6,7 @@ Settings, metadata, account-scoped snapshots and rotating logs live under `%LOCA
 
 ## Reporting a vulnerability
 
-The current development line is **0.3.x beta**; no fixed support period is promised. Check whether the designated [repository](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager) offers a private **Report a vulnerability** action. If enabled, use it for exploitable issues. Private reporting was not verified as enabled during preparation.
+The current development line is **0.3.x beta**; no fixed support period is promised. Check whether the designated [repository](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager) offers a private **Report a vulnerability** action. If enabled, use it for exploitable issues. Private vulnerability reporting is enabled for the repository.
 
 If that channel is unavailable, contact the [repository owner](https://github.com/Memo-B) through a contact method they publish. If none exists, open a minimal issue requesting a private disclosure channel **without technical exploit details or personal data**. Do not invent an email address, post secrets or attach raw account logs. Maintainers should enable a private channel before public release.
 

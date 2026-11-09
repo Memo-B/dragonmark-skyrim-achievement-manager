@@ -2,10 +2,10 @@
 
 ![Dragonmark — Your achievements. A clearer view.](assets/branding/hero.png)
 
-[![GitHub Actions: henüz yayımlanmadı](https://img.shields.io/badge/GitHub_Actions-not_published-grey?logo=githubactions)](.github/workflows/ci.yml)
+[![Build and test](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml)
 [![MIT lisansı](https://img.shields.io/badge/license-MIT-D8BB7D)](LICENSE)
 [![Windows x64](https://img.shields.io/badge/platform-Windows_x64-0078D4)](docs/compatibility.md)
-[![Deneysel önizleme](https://img.shields.io/badge/status-experimental_preview-b8860b)](docs/VALIDATION.md)
+[![Deneysel önizleme](https://img.shields.io/badge/status-public_beta-b8860b)](docs/VALIDATION.md)
 
 **Başarımlarınız, daha net bir görünüm.** Dragonmark, **Skyrim Special Edition / Anniversary Edition Steam başarımlarını** (Uygulama Kimliği **489830**) görüntülemek ve yönetmek için geliştirilmiş özgün bir Windows masaüstü uygulamasıdır. İlerlemenizi inceleyebilir, seçtiğiniz başarımları veya kilitli başarımların tamamını tek bir onaylı işlemde açmayı deneyebilirsiniz. **Uygulama arayüzü tamamen İngilizcedir**; bu dosya Türkçe kullanım rehberidir.
 

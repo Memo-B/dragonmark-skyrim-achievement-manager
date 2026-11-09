@@ -30,3 +30,7 @@ Regenerate metadata with `./scripts/Export-DependencyLicenses.ps1` after a locke
 ## Cinzel display font
 
 The app embeds the unmodified Cinzel font from the [Google Fonts source](https://github.com/google/fonts/tree/main/ofl/cinzel). Copyright 2020 The Cinzel Project Authors; SIL Open Font License 1.1. The full license is retained in [licenses/Cinzel-OFL.txt](licenses/Cinzel-OFL.txt); source and checksum are in [assets/fonts/README.md](assets/fonts/README.md). The font is distributed with its license, separately from Dragonmark's MIT artwork/code. Windows Segoe UI files are not bundled.
+
+## Inno Setup installer
+
+The Windows installer is compiled with Inno Setup 7.1.1 by Jordan Russell, Martijn Laan and contributors. The upstream license is retained in [licenses/Inno-Setup.txt](licenses/Inno-Setup.txt). Its terms permit distribution of generated installers; the compiler is not an application runtime dependency. The installer downloads the pinned Valve component only when the visible installation task is selected, and does not embed that component in the distributed Setup executable.
