@@ -2,7 +2,7 @@
 
 Dragonmark's first public beta delivers the core Skyrim achievement workflow: connect to Steam, inspect the collection, review a selection or every missing achievement, confirm once and inspect the outcome. **The owner has tested individual unlocking and Unlock All successfully on a real account.**
 
-This roadmap distinguishes shipped capabilities from upcoming work. Priorities may change with reproducible reports; no release dates or untested compatibility are promised. [Download the current beta](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.1) · [Validation evidence](docs/VALIDATION.md) · [Report an issue](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/issues).
+This roadmap distinguishes shipped capabilities from upcoming work. Priorities may change with reproducible reports; no release dates or untested compatibility are promised. [Download the current beta](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases) · [Validation evidence](docs/VALIDATION.md) · [Report an issue](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/issues).
 
 ## Delivered in 0.3.0-beta.1
 
@@ -19,6 +19,12 @@ This roadmap distinguishes shipped capabilities from upcoming work. Priorities m
 - [x] Local live-component and offline-demo installation, app launch and uninstall checks.
 - [x] 69 automated tests, locked dependencies, audit checks and a successful first hosted CI run.
 - [x] Release checksums, file manifest, third-party notices, issue templates and private security reporting.
+
+## Delivered in 0.3.0-beta.2
+
+- [x] Withdraw beta.1 downloads after discovering local build-directory paths in application DLL debug metadata.
+- [x] Remove Release debug metadata, map build paths to a neutral root and add binary privacy gates to CI and packaging.
+- [x] Check the replacement package for actual local profile/account identifiers, verify all 465 file hashes and test install, launch and uninstall.
 
 ## Next: broaden confidence across environments
 
