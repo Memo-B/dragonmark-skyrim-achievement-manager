@@ -3,6 +3,7 @@ param([Parameter(Mandatory)][string]$Stage, [Parameter(Mandatory)][string]$Compi
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 $stagePath = (Resolve-Path -LiteralPath $Stage).Path
+& (Join-Path $PSScriptRoot 'Check-PackagePrivacy.ps1') -Directory $stagePath
 $manifest = Get-Content -LiteralPath (Join-Path $stagePath 'manifest.json') -Raw | ConvertFrom-Json
 $version = $manifest.version
 if ($version -notmatch '^\d+\.\d+\.\d+-(preview|beta)\.\d+$') { throw 'Expected a prerelease manifest.' }

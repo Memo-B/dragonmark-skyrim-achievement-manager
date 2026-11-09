@@ -17,3 +17,7 @@ Include affected version, impact, safe reproduction steps and suggested mitigati
 Preview binaries are unsigned. Verify archive checksums and source provenance. The explicit developer setup accepts the pinned Valve-signed library. Public packaging omits that proprietary binary pending redistribution review. The desktop app contains no runtime code downloader. The installer offers a visible Steam-component task that downloads from the official Steamworks.NET tag and checks the pinned SHA-256 before copying any application files. A valid signature proves provenance, not redistribution permission.
 
 Dependency audit results describe known advisories at a point in time, not a security certification. An uncertain Steam operation may persist later; do not treat failure or timeout as rollback. See [Steam integration](docs/steam-integration.md).
+
+## Release build privacy
+
+Release builds disable debug output and normalize source paths. Packaging and installer compilation run `scripts/Check-PackagePrivacy.ps1` against actual binary contents, not only file names. This blocks embedded Windows profile paths, Steam account identifier patterns and private/debug files. Beta.1 downloads were withdrawn after embedded build paths were discovered; use beta.2 or later. The audit did not find Steam account IDs or local settings/history in that payload.

@@ -1,6 +1,6 @@
 # Publishing Dragonmark
 
-Repository: [Memo-B/dragonmark-skyrim-achievement-manager](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager). The owner authorized the first source push and public release after reporting successful individual unlock and Unlock All tests. The first public version is **0.3.0-beta.1**, a prerelease with explicit remaining compatibility checks.
+Repository: [Memo-B/dragonmark-skyrim-achievement-manager](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager). The owner authorized the first source push and public release after reporting successful individual unlock and Unlock All tests. The first public version is **0.3.0-beta.2**, a prerelease with explicit remaining compatibility checks.
 
 ## Build and review
 
@@ -27,7 +27,7 @@ git add .
 git diff --cached --check
 git diff --cached --stat
 git diff --cached
-git commit -m "Release Dragonmark 0.3.0-beta.1 with Windows installer"
+git commit -m "Release Dragonmark 0.3.0-beta.2 with Windows installer"
 git push -u origin main
 ```
 
@@ -38,8 +38,8 @@ gh run list --repo Memo-B/dragonmark-skyrim-achievement-manager
 gh run watch RUN_ID --repo Memo-B/dragonmark-skyrim-achievement-manager --exit-status
 $metadata = Get-Content .github/repository-metadata.json -Raw | ConvertFrom-Json
 gh repo edit $metadata.repository --description $metadata.description --add-topic ($metadata.topics -join ',')
-git tag -a v0.3.0-beta.1 -m "Dragonmark 0.3.0-beta.1 public beta"
-git push origin v0.3.0-beta.1
+git tag -a v0.3.0-beta.2 -m "Dragonmark 0.3.0-beta.2 public beta"
+git push origin v0.3.0-beta.2
 ```
 
 The metadata file contains the exact About description and 15 relevant topics. No homepage or SKSE integration is invented. Upload `assets/branding/social-preview.png` through **Repository Settings → General → Social preview**. Current screenshots appear in both READMEs and tag-scoped release notes.
@@ -47,7 +47,7 @@ The metadata file contains the exact About description and 15 relevant topics. N
 ## Publish the reviewed artifacts
 
 ```powershell
-gh release create v0.3.0-beta.1 .\artifacts\Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe .\artifacts\Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe.sha256 .\artifacts\Dragonmark-v0.3.0-beta.1-win-x64.zip .\artifacts\Dragonmark-v0.3.0-beta.1-win-x64.zip.sha256 --repo Memo-B/dragonmark-skyrim-achievement-manager --verify-tag --prerelease --title "Dragonmark 0.3.0-beta.1 — Windows installer" --notes-file .\artifacts\RELEASE_NOTES-v0.3.0-beta.1.md
+gh release create v0.3.0-beta.2 .\artifacts\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe .\artifacts\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe.sha256 .\artifacts\Dragonmark-v0.3.0-beta.2-win-x64.zip .\artifacts\Dragonmark-v0.3.0-beta.2-win-x64.zip.sha256 --repo Memo-B/dragonmark-skyrim-achievement-manager --verify-tag --prerelease --title "Dragonmark 0.3.0-beta.2 — Windows installer" --notes-file .\artifacts\RELEASE_NOTES-v0.3.0-beta.2.md
 ```
 
 Verify all four public assets and their checksums after publication. Use the explicit version's release URL in documentation because GitHub's `/releases/latest` excludes prereleases. Do not claim passing hosted checks from local tests alone. Future versions should bump `Directory.Build.props`, regenerate screenshots, update documentation, rebuild and repeat validation.

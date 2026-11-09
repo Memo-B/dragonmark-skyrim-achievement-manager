@@ -3,7 +3,7 @@
 ![Dragonmark — Your achievements. A clearer view.](assets/branding/hero.png)
 
 [![Build and test](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml)
-[![Public beta](https://img.shields.io/badge/release-0.3.0--beta.1-D8BB7D)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.1)
+[![Public beta](https://img.shields.io/badge/release-0.3.0--beta.1-D8BB7D)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.2)
 [![Windows x64](https://img.shields.io/badge/platform-Windows_x64-0078D4)](docs/compatibility.md)
 [![MIT license](https://img.shields.io/badge/license-MIT-D8BB7D)](LICENSE)
 
@@ -11,7 +11,7 @@
 
 Dragonmark is a free, open-source Windows application for **Skyrim Special Edition / Anniversary Edition Steam achievements**. Browse authentic achievement artwork, inspect progress and rarity, unlock selected entries, or unlock every missing achievement with **one explicit confirmation**.
 
-**[Download Windows installer](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.1/Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe)** · **[Release notes & checksums](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.1)** · [Portable ZIP](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.1/Dragonmark-v0.3.0-beta.1-win-x64.zip)
+**[Download Windows installer](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.2/Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe)** · **[Release notes & checksums](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.2)** · [Portable ZIP](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.2/Dragonmark-v0.3.0-beta.2-win-x64.zip)
 
 [English](README.md) · [Türkçe](README.tr.md) · [Installation](docs/installation.md) · [Troubleshooting](docs/troubleshooting.md) · [Roadmap](ROADMAP.md)
 
@@ -21,7 +21,7 @@ Dragonmark is a free, open-source Windows application for **Skyrim Special Editi
 
 ## Start in three steps
 
-1. **Install.** Download `Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe` and run it. Leave **Download the verified Steam connection component** selected. Setup includes .NET and handles the small Steam component download; no SDK, manual DLL copying or administrator rights are needed.
+1. **Install.** Download `Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe` and run it. Leave **Download the verified Steam connection component** selected. Setup includes .NET and handles the small Steam component download; no SDK, manual DLL copying or administrator rights are needed.
 2. **Connect.** Start Steam, sign in to your account with Skyrim SE/AE, launch Dragonmark from the Start Menu and click **Connect Steam**.
 3. **Review and unlock.** Select individual achievements or click **Unlock All**. Review the target count, confirm once, then inspect the results.
 
@@ -97,8 +97,8 @@ The installer and app are **unsigned**, so Windows SmartScreen may show an unkno
 Download the installer and its `.sha256` file from the same release, then compare:
 
 ```powershell
-Get-FileHash .\Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe -Algorithm SHA256
-Get-Content .\Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe.sha256
+Get-FileHash .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe -Algorithm SHA256
+Get-Content .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe.sha256
 ```
 
 Setup retrieves its Steam component from a pinned official Steamworks.NET tag over HTTPS and rejects a mismatched SHA-256. The application itself never downloads executable code. The Valve native binary is not embedded in the published installer or ZIP. A checksum checks integrity; it does not establish trust in an unrelated download site.

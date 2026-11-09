@@ -1,14 +1,16 @@
-# Dragonmark 0.3.0-beta.1 · Skyrim Achievement Manager
+# Dragonmark 0.3.0-beta.2 · Skyrim Achievement Manager
 
-**First public Windows x64 beta.** Browse Skyrim SE/AE Steam achievements, inspect authentic artwork and unlock selected or all missing entries through one explicit confirmation.
+This replaces the withdrawn beta.1 download. An audit found local build-directory paths in the PE debug metadata of four application DLLs. Release builds now disable debug metadata and map source paths to a neutral root. Packaging scans binary contents and refuses Windows profile paths, Steam account identifier patterns and private/debug files. No Steam account ID, settings, snapshot or activity log was found in the audited release payload. This fixes build metadata; achievement operation behavior is unchanged.
+
+**Windows x64 beta — build metadata privacy fix.** Browse Skyrim SE/AE Steam achievements, inspect authentic artwork and unlock selected or all missing entries through one explicit confirmation.
 
 The owner reported successful individual unlock and **Unlock All** tests on a real Steam account on 2026-11-09. Earlier read-only testing retrieved all 75 achievements and 75 current-state icons. This is local and owner-reported evidence; independent restart-persistence and broader-machine validation remain pending. Live clearing stays disabled.
 
-![Dragonmark 0.3.0-beta.1 running in Demo Mode](assets/screenshots/dashboard.png)
+![Dragonmark 0.3.0-beta.2 running in Demo Mode](assets/screenshots/dashboard.png)
 
 ## Download and install
 
-Choose **Dragonmark-v0.3.0-beta.1-win-x64-Setup.exe** from this release's assets. Run Setup, keep **Download the verified Steam connection component** selected, and finish the wizard. .NET is included; no SDK or manual DLL copying is needed. Setup downloads the small pinned component from the official Steamworks.NET tag and verifies its SHA-256 before installing files. Internet is required for live setup. The native binary is not embedded in the installer.
+Choose **Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe** from this release's assets. Run Setup, keep **Download the verified Steam connection component** selected, and finish the wizard. .NET is included; no SDK or manual DLL copying is needed. Setup downloads the small pinned component from the official Steamworks.NET tag and verifies its SHA-256 before installing files. Internet is required for live setup. The native binary is not embedded in the installer.
 
 Start Steam, sign in to your licensed Skyrim account, launch Dragonmark and select **Connect Steam**. No administrator rights, Steam password, SKSE or game-file patch is required. For offline demo, deselect the Steam component during Setup.
 

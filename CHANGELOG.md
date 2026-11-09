@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0-beta.2 — 2026-11-09
+
+- Withdrew the beta.1 binary downloads after finding local build paths in PE debug metadata in four application DLLs.
+- Disabled Release debug metadata and mapped build source paths to a neutral root.
+- Added a mandatory binary/text privacy gate before ZIP packaging and installer compilation; it rejects Windows profile paths, Steam ID patterns and private/debug files.
+- Removed detailed local Windows edition/build information from current compatibility documentation.
+- No Steam account identifier, private account snapshot, settings or activity log was found in the audited beta.1 payload. Existing copies cannot be recalled.
+- Achievement operation behavior is unchanged.
+
+
 ## 0.3.0-beta.1 — 2026-11-09
 
 - First public beta, following owner-reported successful individual unlock and Unlock All testing on a real Steam account.

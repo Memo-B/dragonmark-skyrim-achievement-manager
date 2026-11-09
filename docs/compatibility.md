@@ -4,7 +4,7 @@ Evidence recorded on **2026-11-09**. Target support is not equivalent to a compl
 
 | Component | Target | Observed evidence |
 | --- | --- | --- |
-| OS | Windows 10/11 x64 | Windows 11 Home Single Language, build 26300, tested locally; Windows 10 untested |
+| OS | Windows 10/11 x64 | Windows 11 x64 tested locally; Windows 10 untested |
 | CPU | x64 | x64 build and portable launch verified; ARM64/native x86 unsupported |
 | Source SDK | .NET 10; global.json pins 10.0.100 with latestFeature roll-forward | 10.0.100 used locally |
 | Portable runtime | .NET / Windows Desktop 10.0.14 | Included in self-contained Windows package; no external runtime needed |

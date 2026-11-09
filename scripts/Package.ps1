@@ -34,6 +34,7 @@ try {
     Copy-Item .github -Destination $stage -Recurse
     New-Item -ItemType Directory -Path (Join-Path $stage 'scripts') | Out-Null
     Copy-Item scripts/Setup-SteamNative.ps1 -Destination (Join-Path $stage 'scripts')
+    & ./scripts/Check-PackagePrivacy.ps1 -Directory $stage
     $runtime = Get-Content (Join-Path $stage 'Dragonmark.runtimeconfig.json') -Raw | ConvertFrom-Json
     $files = Get-ChildItem -LiteralPath $stage -File -Recurse | Sort-Object FullName | ForEach-Object {
         [ordered]@{ path = [IO.Path]::GetRelativePath($stage, $_.FullName).Replace('\','/'); sha256 = (Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant() }

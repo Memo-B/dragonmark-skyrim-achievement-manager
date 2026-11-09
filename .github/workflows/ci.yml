@@ -23,6 +23,7 @@ jobs:
       - run: dotnet restore Dragonmark.sln --locked-mode
       - run: dotnet format Dragonmark.sln --verify-no-changes --no-restore
       - run: dotnet build Dragonmark.sln -c Release --no-restore
+      - run: ./scripts/Check-PackagePrivacy.ps1 -Directory src/Dragonmark.App/bin/Release/net10.0-windows/win-x64
       - run: dotnet test Dragonmark.sln -c Release --no-build --logger trx --results-directory TestResults
       - run: ./scripts/Check-Dependencies.ps1
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
