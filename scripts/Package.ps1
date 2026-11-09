@@ -7,8 +7,8 @@ $repo = Split-Path $PSScriptRoot -Parent
 $declared = [string]$properties.Project.PropertyGroup.Version
 if (!$Version) { $Version = $declared }
 if ($Version -cne $declared) { throw 'Archive and assembly versions must match Directory.Build.props.' }
-if ($Version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-(preview|beta)\.(0|[1-9]\d*)$') {
-    throw 'Only X.Y.Z-preview.N or X.Y.Z-beta.N prereleases are permitted while broader validation remains pending.'
+if ($Version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(preview|beta)\.(0|[1-9]\d*))?$') {
+    throw 'Expected X.Y.Z, X.Y.Z-preview.N or X.Y.Z-beta.N.'
 }
 $archive = Join-Path $repo "artifacts\Dragonmark-v$Version-win-x64.zip"
 if (Test-Path -LiteralPath $archive) { throw "Archive already exists: $archive. Use a new version or remove it explicitly." }
@@ -47,5 +47,5 @@ try {
     if ($InstallerCompiler) { & ./scripts/Build-Installer.ps1 -Stage $stage -Compiler $InstallerCompiler }
     Write-Host "Created $archive"
     Write-Host "Stage: $stage"
-    Write-Host 'Prerelease artifacts only. .NET included; the installer offers verified Steam component download. Nothing was published.'
+    Write-Host 'Release artifacts created locally. .NET included; the installer offers verified Steam component download. Nothing was published.'
 } finally { Pop-Location }

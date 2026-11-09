@@ -6,7 +6,7 @@ Settings, metadata, account-scoped snapshots and rotating logs live under `%LOCA
 
 ## Reporting a vulnerability
 
-The current development line is **0.3.x beta**; no fixed support period is promised. Check whether the designated [repository](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager) offers a private **Report a vulnerability** action. If enabled, use it for exploitable issues. Private vulnerability reporting is enabled for the repository.
+The current development line is **1.x stable**; no fixed support period is promised. Check whether the designated [repository](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager) offers a private **Report a vulnerability** action. If enabled, use it for exploitable issues. Private vulnerability reporting is enabled for the repository.
 
 If that channel is unavailable, contact the [repository owner](https://github.com/Memo-B) through a contact method they publish. If none exists, open a minimal issue requesting a private disclosure channel **without technical exploit details or personal data**. Do not invent an email address, post secrets or attach raw account logs. Maintainers should enable a private channel before public release.
 
@@ -20,4 +20,4 @@ Dependency audit results describe known advisories at a point in time, not a sec
 
 ## Release build privacy
 
-Release builds disable debug output and normalize source paths. Packaging and installer compilation run `scripts/Check-PackagePrivacy.ps1` against actual binary contents, not only file names. This blocks embedded Windows profile paths, Steam account identifier patterns and private/debug files. Beta.1 downloads were withdrawn after embedded build paths were discovered; use beta.2 or later. The audit did not find Steam account IDs or local settings/history in that payload.
+Release builds disable debug output and normalize source paths. Packaging and installer compilation run `scripts/Check-PackagePrivacy.ps1` against actual binary contents, not only file names. This blocks embedded Windows profile paths, Steam account identifier patterns and private/debug files. Beta.1 downloads were withdrawn after embedded build paths were discovered; use 1.0.0 or later. The audit did not find Steam account IDs or local settings/history in that payload.

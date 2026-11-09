@@ -1,6 +1,6 @@
 # Dragonmark Steam integration
 
-**Real read integration is working on one tested installation. On 2026-11-09 the owner reported successful individual unlock and Unlock All tests.** This owner-reported evidence supports a public beta; independent restart persistence and broader compatibility checks remain pending. No simulated result is presented as Steam success.
+**Real read integration is working on one tested installation. On 2026-11-09 the owner reported successful individual unlock and Unlock All tests.** Release 1.0.0 adds account-boundary regression tests and real WPF workflow tests. Independent restart persistence and broader compatibility checks remain unverified; see [validation](VALIDATION.md). No simulated result is presented as Steam success.
 
 The provider uses Steamworks.NET 2024.8.0 and the matching Valve x64 library, targeting App ID **489830**. It verifies the active app, account, login and license. It dynamically enumerates API identifiers and retrieves current achievement states; no hard-coded Skyrim achievement list is required.
 

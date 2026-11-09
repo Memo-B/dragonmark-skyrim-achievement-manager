@@ -1,5 +1,6 @@
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Dragonmark.Core;
@@ -53,6 +54,22 @@ internal static class ScreenshotCapture
             window.Width = 1100; window.Height = 740; await Capture("compact-1100x740");
             window.Width = 1440; window.Height = 960; await Task.Delay(180);
             Save(window, Path.Combine(folder, "render-scale-150.png"), 1.5);
+            foreach (double scale in new[] { 1.25, 1.5, 2.0 })
+            {
+                var workArea = new Rect(0, 0, 1366 / scale, 728 / scale);
+                WindowLayout.Constrain(window, workArea);
+                var viewport = (ScrollViewer)window.Content;
+                viewport.ScrollToBottom(); viewport.ScrollToRightEnd();
+                await Capture($"workarea-{scale * 100:0}-dashboard");
+                var compact = vm.CreateDemoCaptureConfirmation();
+                compact.Show(); WindowLayout.Constrain(compact, workArea, 520, 360);
+                await Task.Delay(180);
+                var dialogViewport = (ScrollViewer)compact.Content;
+                dialogViewport.ScrollToBottom(); dialogViewport.ScrollToRightEnd();
+                await Task.Delay(180);
+                Save(compact, Path.Combine(folder, $"workarea-{scale * 100:0}-confirmation.png"));
+                compact.Close();
+            }
             var dpi = VisualTreeHelper.GetDpi(window);
             File.WriteAllText(Path.Combine(folder, "capture-environment.json"), System.Text.Json.JsonSerializer.Serialize(new { dpi.PixelsPerInchX, dpi.PixelsPerInchY, RasterScaleTest = 1.5, Mode = "Demo", WritesExecuted = false }));
         }

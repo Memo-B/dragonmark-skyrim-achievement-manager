@@ -38,6 +38,6 @@ UI work can use the demo provider and [reproducible screenshots](SCREENSHOTS.md)
 ./scripts/Package.ps1
 ```
 
-This runs repository checks, locked restore, format, build, tests and dependency audit before self-contained publication into a fresh stage. Version comes from `Directory.Build.props`; only `X.Y.Z-preview.N` is accepted while live write validation is outstanding. Do not relabel a failed build as stable.
+This runs repository checks, locked restore, format, build, tests and dependency audit before self-contained publication into a fresh stage. Version comes from `Directory.Build.props`; stable `X.Y.Z` and prerelease `X.Y.Z-preview.N` / `X.Y.Z-beta.N` versions are accepted after the same validation gates. Do not relabel a failed build as stable.
 
 The ZIP excludes the proprietary native DLL, includes licenses and a SHA-256 file manifest, and has a separate archive checksum. Existing archives are not overwritten. Runtime inputs are pinned, but ZIP timestamps and the host SDK can affect byte reproducibility. The manual GitHub workflow uploads artifacts only; it has no permission to create releases. [Owner publication commands](PUBLISHING.md).

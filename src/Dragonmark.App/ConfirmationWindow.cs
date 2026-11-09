@@ -32,7 +32,8 @@ public sealed class ConfirmationWindow : Window
         confirm.Click += (_, _) => DialogResult = true; actions.Children.Add(cancel); actions.Children.Add(confirm);
         bottom.Children.Add(actions); DockPanel.SetDock(bottom, Dock.Bottom); layout.Children.Add(bottom);
         layout.Children.Add(new TextBox { Text = targets, IsReadOnly = true, TextWrapping = TextWrapping.Wrap, VerticalContentAlignment = VerticalAlignment.Top, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, FontSize = 12 });
-        background.Children.Add(layout); Content = background;
+        background.Children.Add(layout); Content = WindowLayout.Scrollable(background, 570, 650);
+        WindowLayout.Attach(this);
         Loaded += (_, _) => { cancel.Focus(); Motion.Reveal(background); };
     }
 }

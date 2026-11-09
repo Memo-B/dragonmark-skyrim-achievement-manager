@@ -3,7 +3,7 @@
 ![Dragonmark — Your achievements. A clearer view.](assets/branding/hero.png)
 
 [![Derleme ve test](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml/badge.svg)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml)
-[![Genel beta](https://img.shields.io/badge/release-0.3.0--beta.1-D8BB7D)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.2)
+[![Kararlı 1.0.0](https://img.shields.io/badge/release-1.0.0-D8BB7D)](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v1.0.0)
 [![Windows x64](https://img.shields.io/badge/platform-Windows_x64-0078D4)](docs/compatibility.md)
 [![MIT lisansı](https://img.shields.io/badge/license-MIT-D8BB7D)](LICENSE)
 
@@ -11,7 +11,7 @@
 
 Dragonmark, **Skyrim Special Edition / Anniversary Edition Steam başarımlarını** yönetmek için geliştirilmiş ücretsiz ve açık kaynaklı bir Windows uygulamasıdır. Gerçek Steam görselleriyle koleksiyonunu inceleyebilir, seçtiğin başarımları veya kilitli başarımların tamamını **tek bir açık onayla** açabilirsin.
 
-**[Windows yükleyicisini indir](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.2/Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe)** · **[Sürüm notları ve dosya özetleri](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.2)** · [Taşınabilir ZIP](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v0.3.0-beta.2/Dragonmark-v0.3.0-beta.2-win-x64.zip)
+**[Windows yükleyicisini indir](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v1.0.0/Dragonmark-v1.0.0-win-x64-Setup.exe)** · **[Sürüm notları ve dosya özetleri](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v1.0.0)** · [Taşınabilir ZIP](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/download/v1.0.0/Dragonmark-v1.0.0-win-x64.zip)
 
 [English](README.md) · [Türkçe](README.tr.md) · [Kurulum](docs/installation.md) · [Sorun giderme](docs/troubleshooting.md) · [Yol haritası](ROADMAP.md)
 
@@ -21,7 +21,7 @@ Dragonmark, **Skyrim Special Edition / Anniversary Edition Steam başarımların
 
 ## Üç adımda başla
 
-1. **Kur.** `Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe` dosyasını indirip çalıştır. **Download the verified Steam connection component** seçeneğini seçili bırak. .NET pakete dahildir; küçük Steam bileşenini kurulum indirir. SDK, elle DLL kopyalama veya yönetici yetkisi gerekmez.
+1. **Kur.** `Dragonmark-v1.0.0-win-x64-Setup.exe` dosyasını indirip çalıştır. **Download the verified Steam connection component** seçeneğini seçili bırak. .NET pakete dahildir; küçük Steam bileşenini kurulum indirir. SDK, elle DLL kopyalama veya yönetici yetkisi gerekmez.
 2. **Bağlan.** Steam'i açıp Skyrim SE/AE'ye sahip hesabına giriş yap. Başlat menüsünden Dragonmark'ı aç ve **Connect Steam** düğmesine bas.
 3. **İncele ve aç.** Tek tek başarımlar seç veya **Unlock All** düğmesini kullan. Hedef sayısını incele, bir kez onayla ve sonuçları kontrol et.
 
@@ -49,13 +49,13 @@ Steam bileşeninin indirilmesi ve canlı Steam erişimi için İnternet gerekir.
 | --- | --- |
 | Gerçek Steam okuması | Test edilen kurulumda **75 başarım ve 75 güncel simge** alındı |
 | Gerçek başarım açma | Depo sahibi 2026-11-09 tarihinde gerçek hesabında tekli açma ve **Unlock All** işlemlerini denedi, ikisinin de başarılı çalıştığını bildirdi |
-| Otomatik davranış testleri | **69 test geçti**; toplu planlama, geri çağırımlar, sonuç sınıflandırması, hesap kontrolleri ve simge durumları kapsanıyor |
+| Otomatik davranış testleri | **89 test geçti**; hesap değişimi sınırları, gerçek WPF onay/iptal akışı, odak geçişi ve küçük ekran yerleşimleri dahil |
 | Windows yükleyicisi | Kurulum, doğrulanmış Steam bileşeni indirme, açılış, çevrimdışı demo kurulumu ve kaldırma yerel testleri geçti |
 | Derleme ve bağımlılıklar | Sıfır hata/uyarı; kilitli bağımlılık ve açık denetimleri geçti |
 | GitHub kontrolleri | [İlk main CI çalışması başarılı](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/runs/42670925791); üstteki rozet güncel durumu gösterir |
 | İndirme bütünlüğü | Yükleyici ve ZIP için ayrı SHA-256 dosyası; ZIP içinde dosya bazlı manifest bulunur |
 
-Bu sürüm **çalışan bir genel betadır**. Canlı açma kanıtı, depo sahibinin manuel test bildirimidir. Farklı Windows/hesap ortamları ve bağımsız yeniden başlatma sonrası kalıcılık kontrolleri [doğrulama planında](docs/VALIDATION.md) izlenir. [Yol haritası](ROADMAP.md) tamamlanan işleri gelecek kontrollerden ayırır.
+**1.0.0, tamamlanan özellik kapsamının kararlı sürümüdür.** Proje bakım aşamasındadır; yeni özellik geliştirmesi planlanmıyor. Canlı açma kanıtı depo sahibinin manuel testidir. Diğer ortamlar ve bağımsız yeniden başlatma sonrası kalıcılık için doğrulanmamış noktalar [doğrulama kaydında](docs/VALIDATION.md), bakım sınırları [yol haritasında](ROADMAP.md) açıklanır.
 
 ## Senin hesabın, senin onayın
 
@@ -97,8 +97,8 @@ Yükleyici ve uygulama **dijital olarak imzalanmamıştır**; SmartScreen bilinm
 Aynı sürümden yükleyiciyi ve `.sha256` dosyasını indirip karşılaştır:
 
 ```powershell
-Get-FileHash .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe -Algorithm SHA256
-Get-Content .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe.sha256
+Get-FileHash .\Dragonmark-v1.0.0-win-x64-Setup.exe -Algorithm SHA256
+Get-Content .\Dragonmark-v1.0.0-win-x64-Setup.exe.sha256
 ```
 
 Kurulum, Steam bileşenini sabitlenmiş resmî Steamworks.NET etiketinden HTTPS ile indirir ve SHA-256 eşleşmezse reddeder. Uygulamanın kendisi çalıştırılabilir kod indirmez. Valve DLL'si yayımlanan yükleyici veya ZIP'in içine gömülmez. Dosya özeti bütünlüğü denetler; ilgisiz bir indirme sitesinin güvenilirliğini kanıtlamaz.

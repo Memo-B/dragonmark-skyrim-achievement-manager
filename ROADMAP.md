@@ -1,61 +1,33 @@
 # Dragonmark roadmap
 
-Dragonmark's first public beta delivers the core Skyrim achievement workflow: connect to Steam, inspect the collection, review a selection or every missing achievement, confirm once and inspect the outcome. **The owner has tested individual unlocking and Unlock All successfully on a real account.**
+**Version 1.0.0 completes the planned Skyrim achievement manager.** The project is now in maintenance mode: no additional feature development is scheduled. Reproducible defects, security issues and required Steam/Windows compatibility updates can still receive fixes.
 
-This roadmap distinguishes shipped capabilities from upcoming work. Priorities may change with reproducible reports; no release dates or untested compatibility are promised. [Download the current beta](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases) · [Validation evidence](docs/VALIDATION.md) · [Report an issue](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/issues).
+[Download the stable release](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/latest) · [Validation evidence](docs/VALIDATION.md) · [Report an issue](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/issues)
 
-## Delivered in 0.3.0-beta.1
+## Completed scope
 
-- [x] Real Steamworks integration for Skyrim SE/AE App ID 489830, with dynamic achievement enumeration.
-- [x] Authentic Steam achievement metadata and current-state icons; all 75 loaded in the local read test.
-- [x] Individual/selected unlock and a dedicated Unlock All / Unlock Missing action with one target-count confirmation.
+- [x] Real Steamworks integration for Skyrim SE/AE App ID 489830, dynamic achievement enumeration and authentic current-state artwork.
+- [x] Individual/selected unlock and dedicated Unlock All / Unlock Missing with one target-count confirmation.
 - [x] Owner-reported successful real individual unlock and Unlock All tests on 2026-11-09.
-- [x] One StoreStats batch, matching callbacks, refreshed-state checks and separate successful/failed/unverified results.
-- [x] No automatic startup writes, duplicate prevention, batch cooldown and uncertain-write protection.
-- [x] Search, filters, rarity, detail cards, completion progress, presets, history and JSON/CSV exports.
-- [x] Original Nordic design, reduced motion, optional local background and isolated offline Demo Mode.
-- [x] English application and English/Turkish documentation with real current-version screenshots.
-- [x] Per-user Windows installer, .NET included, verified Steam dependency download, shortcuts and uninstaller.
-- [x] Local live-component and offline-demo installation, app launch and uninstall checks.
-- [x] 69 automated tests, locked dependencies, audit checks and a successful first hosted CI run.
-- [x] Release checksums, file manifest, third-party notices, issue templates and private security reporting.
+- [x] One StoreStats batch, matching callbacks, refreshed-state verification and separate successful/failed/unverified results.
+- [x] No startup writes, duplicate prevention, cooldown and persistent session blocking after an uncertain write.
+- [x] Account, login, license and App ID checks at refresh, staging, store and verification boundaries.
+- [x] Search, filters, rarity, details, presets, history and JSON/CSV exports.
+- [x] Original Nordic interface, reduced motion, optional local background and isolated offline Demo Mode.
+- [x] Windows constrained to the monitor work area, with scrollable content on smaller displays.
+- [x] Real WPF tests for single confirmation, cancellation, default Enter/Escape actions, focus navigation and constrained layouts.
+- [x] English application, English/Turkish guides and actual application screenshots.
+- [x] Per-user installer, included .NET runtime, verified Steam component download, shortcuts and uninstaller.
+- [x] Locked dependencies, audit checks, release checksums, file manifest and package privacy gates.
 
-## Delivered in 0.3.0-beta.2
+## Maintenance policy
 
-- [x] Withdraw beta.1 downloads after discovering local build-directory paths in application DLL debug metadata.
-- [x] Remove Release debug metadata, map build paths to a neutral root and add binary privacy gates to CI and packaging.
-- [x] Check the replacement package for actual local profile/account identifiers, verify all 465 file hashes and test install, launch and uninstall.
+The current release preserves this scope. Bug reports should include the app/Windows version, reproducible steps and redacted evidence. Automated tests use fictional data and never mutate a Steam account. Security reports belong in the [private disclosure channel](SECURITY.md).
 
-## Next: broaden confidence across environments
+Code signing, additional Windows installations, physical per-monitor DPI and screen-reader coverage are not claimed as completed. See the [compatibility matrix](docs/compatibility.md) for tested versus intended support. Stable means the documented feature set has passed its release checks; it does not promise every future Steam or Windows version will behave identically.
 
-| Priority | Work | Completion evidence |
-| --- | --- | --- |
-| High | Record independent Steam-profile and later restart-persistence checks | Redacted before/after evidence and a fresh-session read, keeping personal account data private |
-| High | Extend Windows compatibility | Documented installer/live-read results on Windows 10 and additional Windows 11 systems |
-| High | Exercise interrupted connections and account changes | Manual failure/reconnect results alongside the existing fake-API tests; no false-success or silent retry behavior |
-| High | Validate accessibility and display scaling | Keyboard-only confirmation/cancel flow, screen-reader labels and real per-monitor 125/150/200% DPI checks |
-| Medium | Improve release provenance | Evaluate code signing and publish the actual verification status; retain checksums and pinned dependencies |
-| Medium | Test upgrades and support diagnostics | Verify updates preserve preferences and improve redacted troubleshooting instructions |
+## Intentional boundaries
 
-A stable release will be based on this broader evidence, not just a version-number change. The working beta remains available while these checks expand.
+Live achievement clearing stays disabled. There is no mass reset, snapshot rollback, save editing, quest completion, SKSE bridge, other-game support or non-Steam integration. Presets restore selections only. The proprietary Valve native library is not embedded; Setup offers the pinned, checksum-verified download.
 
-## Later: consider after evidence and demand
-
-- **Live individual clearing:** keep it disabled until compatibility and persistence are verified. There is no planned mass-reset or snapshot-rollback promise.
-- **Offline dependency delivery:** evaluate native-library redistribution terms before embedding it. Today's installer already handles the verified download, so users do not copy DLLs manually.
-- **Additional usability refinements:** prioritize concrete reports about finding achievements, reviewing results and keyboard access.
-- **Further documentation translations:** welcome contributions while keeping the application UI English.
-
-## Project boundaries
-
-Dragonmark targets Skyrim SE/AE achievements on Steam. It is not a save editor, quest-completion tool, game launcher or credential manager. No SKSE bridge is required. Original Skyrim, Skyrim VR and other stores need different integration work and are not advertised as supported. Presets only restore selections; they never execute changes automatically.
-
-## Useful first contributions
-
-1. Follow the installer guide on another supported Windows environment and report the exact app/OS versions and results.
-2. Test keyboard focus order or high-DPI layouts and attach a redacted screenshot of a specific issue.
-3. Add a meaningful malformed-preset, export compatibility or callback edge-case test.
-4. Improve a troubleshooting step using a reproducible failure and its confirmed resolution.
-5. Review the English/Turkish guides against the current release.
-
-See [CONTRIBUTING](CONTRIBUTING.md) before changing behavior. Automated tests must remain account-safe. Report exploitable issues through the [security policy](SECURITY.md), not a public issue containing sensitive details.
+No expansion of these boundaries is planned. Contributions should focus on a concrete defect or maintenance need; see [CONTRIBUTING](CONTRIBUTING.md).

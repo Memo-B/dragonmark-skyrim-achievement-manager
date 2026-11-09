@@ -42,7 +42,9 @@ public sealed class BatchResultsWindow : Window
             if (items.Length == 0) entries.Children.Add(new TextBlock { Text = "No operations in this category.", Foreground = (Brush)FindResource("Muted"), FontSize = 11 });
         }
         panel.Children.Add(new ScrollViewer { Content = entries, VerticalScrollBarVisibility = ScrollBarVisibility.Auto });
-        root.Children.Add(panel); Content = root; Loaded += (_, _) => Motion.Reveal(root);
+        root.Children.Add(panel); Content = WindowLayout.Scrollable(root, 570, 440);
+        WindowLayout.Attach(this);
+        Loaded += (_, _) => Motion.Reveal(root);
     }
     private static Border Counter(int count, string text, string color)
     {

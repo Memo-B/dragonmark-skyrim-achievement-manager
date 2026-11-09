@@ -1,7 +1,8 @@
 <Window x:Class="Dragonmark.App.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Dragonmark.App"
-        Title="Dragonmark - Skyrim Achievement Manager" Icon="Branding/mark.png" Width="1440" Height="960" MinWidth="1050" MinHeight="700" WindowStartupLocation="CenterScreen" Style="{StaticResource {x:Type Window}}" Language="en-US">
+        Title="Dragonmark - Skyrim Achievement Manager" Icon="Branding/mark.png" Width="1440" Height="960" MinWidth="600" MinHeight="360" WindowStartupLocation="CenterScreen" Style="{StaticResource {x:Type Window}}" Language="en-US">
   <Window.InputBindings><KeyBinding Key="F5" Command="{Binding RefreshCommand}"/><KeyBinding Key="F" Modifiers="Control" Command="{x:Static ApplicationCommands.Find}"/></Window.InputBindings>
-  <Grid ClipToBounds="True">
+  <ScrollViewer x:Name="ShellViewport" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Focusable="False">
+  <Grid ClipToBounds="True" MinWidth="1000" MinHeight="680" Width="{Binding ViewportWidth, ElementName=ShellViewport}" Height="{Binding ViewportHeight, ElementName=ShellViewport}">
     <local:NordicAtmosphere IsHitTestVisible="False"/>
     <Image Source="{Binding ThemeArtwork}" Stretch="UniformToFill" Opacity="0.18" IsHitTestVisible="False"/>
     <Grid>
@@ -101,4 +102,5 @@
       </Grid>
     </Grid>
   </Grid>
+  </ScrollViewer>
 </Window>

@@ -6,7 +6,7 @@ $stagePath = (Resolve-Path -LiteralPath $Stage).Path
 & (Join-Path $PSScriptRoot 'Check-PackagePrivacy.ps1') -Directory $stagePath
 $manifest = Get-Content -LiteralPath (Join-Path $stagePath 'manifest.json') -Raw | ConvertFrom-Json
 $version = $manifest.version
-if ($version -notmatch '^\d+\.\d+\.\d+-(preview|beta)\.\d+$') { throw 'Expected a prerelease manifest.' }
+if ($version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(preview|beta)\.(0|[1-9]\d*))?$') { throw 'Expected a stable or preview/beta version in the manifest.' }
 if (Test-Path -LiteralPath (Join-Path $stagePath 'steam_api64.dll')) { throw 'Do not embed the Valve native binary in the installer.' }
 foreach ($entry in $manifest.files) {
     $candidate = [IO.Path]::GetFullPath((Join-Path $stagePath $entry.path))

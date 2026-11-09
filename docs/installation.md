@@ -1,15 +1,15 @@
 # Install Dragonmark
 
-Current release: **0.3.0-beta.2** for Windows x64. Use only the [official release page](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v0.3.0-beta.2).
+Current release: **1.0.0** for Windows x64. Use only the [official release page](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/releases/tag/v1.0.0).
 
 ## Recommended: Windows installer
 
-1. Download `Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe` and its `.sha256` file.
+1. Download `Dragonmark-v1.0.0-win-x64-Setup.exe` and its `.sha256` file.
 2. Compare the file hash with the sidecar:
 
    ```powershell
-   Get-FileHash .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe -Algorithm SHA256
-   Get-Content .\Dragonmark-v0.3.0-beta.2-win-x64-Setup.exe.sha256
+   Get-FileHash .\Dragonmark-v1.0.0-win-x64-Setup.exe -Algorithm SHA256
+   Get-Content .\Dragonmark-v1.0.0-win-x64-Setup.exe.sha256
    ```
 
 3. Run Setup. It installs for the current Windows user without administrator privileges. The default location is `%LOCALAPPDATA%\Programs\Dragonmark`.

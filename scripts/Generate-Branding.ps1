@@ -64,7 +64,7 @@ Png 'hero.png' 1280 400 {
     TextLine $dc 'Your achievements. A clearer view.' 365 239 19 $muted
     TextLine $dc 'WINDOWS x64  /  OPEN SOURCE  /  EXPERIMENTAL PREVIEW' 365 301 14 $muted
 }
-SvgFile 'social-preview.svg' 1280 640 "<rect width='1280' height='640' fill='$ink'/>$mountainsSvg<rect x='24' y='24' width='1232' height='592' rx='16' fill='none' stroke='#343C47'/><g transform='translate(64 148) scale(1.25)'>$mark</g><g font-family='Segoe UI, sans-serif'><text x='450' y='236' font-family='Cinzel, Georgia, serif' font-size='66' fill='$gold'>Dragonmark</text><text x='454' y='300' font-size='29' fill='#F1F1EE'>Skyrim Achievement Manager</text><text x='454' y='368' font-size='23' fill='$muted'>Your achievements. A clearer view.</text><text x='454' y='438' font-size='17' fill='$muted'>Inspect · Select · Confirm · Verify</text><text x='454' y='530' font-size='15' fill='$gold'>OPEN SOURCE · WINDOWS x64 · EXPERIMENTAL</text></g>" 'Dragonmark social preview. Independent Skyrim SE/AE achievement utility. Experimental.'
+SvgFile 'social-preview.svg' 1280 640 "<rect width='1280' height='640' fill='$ink'/>$mountainsSvg<rect x='24' y='24' width='1232' height='592' rx='16' fill='none' stroke='#343C47'/><g transform='translate(64 148) scale(1.25)'>$mark</g><g font-family='Segoe UI, sans-serif'><text x='450' y='236' font-family='Cinzel, Georgia, serif' font-size='66' fill='$gold'>Dragonmark</text><text x='454' y='300' font-size='29' fill='#F1F1EE'>Skyrim Achievement Manager</text><text x='454' y='368' font-size='23' fill='$muted'>Your achievements. A clearer view.</text><text x='454' y='438' font-size='17' fill='$muted'>Inspect · Select · Confirm · Verify</text><text x='454' y='530' font-size='15' fill='$gold'>OPEN SOURCE · WINDOWS x64 · STABLE</text></g>" 'Dragonmark social preview. Independent Skyrim SE/AE achievement utility. Stable release.'
 Png 'social-preview.png' 1280 640 {
     param($dc)
     $dc.DrawRectangle((Brush $ink),$null,[Windows.Rect]::new(0,0,1280,640))
@@ -75,7 +75,7 @@ Png 'social-preview.png' 1280 640 {
     TextLine $dc 'Skyrim Achievement Manager' 454 265 29 '#F1F1EE'
     TextLine $dc 'Your achievements. A clearer view.' 454 340 23 $muted
     TextLine $dc 'Inspect · Select · Confirm · Verify' 454 416 17 $muted
-    TextLine $dc 'OPEN SOURCE · WINDOWS x64 · EXPERIMENTAL' 454 511 15 $gold
+    TextLine $dc 'OPEN SOURCE · WINDOWS x64 · STABLE' 454 511 15 $gold
 }
 # ICO directory with lossless PNG frames at Windows shell sizes.
 $sizes=@(16,24,32,48,64,128,256); $frames=@()

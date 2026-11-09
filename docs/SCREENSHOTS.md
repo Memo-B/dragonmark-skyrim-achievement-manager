@@ -21,4 +21,4 @@ dotnet src/Dragonmark.App/bin/Release/net10.0-windows/win-x64/Dragonmark.dll --d
 
 Both require an absolute output path and `--demo`. Captures use a fresh temporary profile rather than ordinary settings, snapshots or personal theme artwork. The suite opens the actual production confirmation layout and closes it without confirming. It uses WPF rendering at 96 DPI for sharp, consistently cropped content; no UI is composited or redrawn afterward. The QA scale render is a raster check, not proof of per-monitor DPI behavior.
 
-Inspect every image for clipping and privacy before committing. Demo Mode must stay visible. Do not package private native logs or real-account screenshots. Regenerate after changing layout, product version, branding or captions. Public images correspond to **0.3.0-beta.2**.
+Inspect every image for clipping and privacy before committing. Demo Mode must stay visible. Do not package private native logs or real-account screenshots. Regenerate after changing layout, product version, branding or captions. Public images correspond to **1.0.0**.

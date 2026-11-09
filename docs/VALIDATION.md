@@ -1,41 +1,30 @@
-# Dragonmark validation · 0.3.0-beta.2
+# Dragonmark validation · 1.0.0
 
-Evidence date: **2026-11-09**. Build/test evidence and real Steam evidence are intentionally separated.
+Recorded on **2026-11-09**. Automated test evidence, the owner's real-account test report and unverified environments are distinguished below.
 
-## Current automated and visual evidence
+## Automated release gates
 
-- Windows x64 Release build on SDK 10.0.100, .NET 10: zero warnings/errors.
-- **69 automated tests passed**, zero failures/skips. Fictional fixtures and fake native APIs only; tests never initialize Steam or modify an account.
-- Coverage includes enumeration, selection/filter independence, Unlock All planning, explicit confirmation, duplicate prevention, one StoreStats batch, callback identity/deadlines, partial/uncertain persistence, cooldown, account switching, presets, reports and privacy behavior.
-- Six additional artwork/progress cases verify API identifier/state selection, unknown-ID rejection, changed artwork state after refresh, and separation of local acceptance, submission and verification.
-- Current WPF screens rendered and were inspected. Seven public Demo Mode captures show dashboard, gallery, detail, confirmation, rare filter, settings and diagnostics. Additional local captures cover About, presets/history, locked/unlocked, empty state and 1100 × 740 layout.
-- The capture environment reported 96 DPI. A 150% raster render was also generated; it is not a substitute for real per-monitor DPI testing.
-- Source/local Markdown target checks passed. All **24 active external documentation URLs** returned successful HTTP responses. Future tag/workflow links inside owner-command examples are deliberately excluded until publication.
-- Three GitHub workflow files parsed successfully, use immutable official action commits, and have contents-read permissions. The first hosted main-branch [Build and test run](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/runs/42670925791) passed, including locked restore, formatting, build, tests and dependency audit. The README badge reports current hosted status.
-- Restored direct/transitive NuGet audit reported no vulnerabilities. Fourteen package license records were reviewed; runtime/component notices and the bundled Cinzel OFL license are retained. A clean audit is not a security certification.
+- **89 tests passed**: 78 core/provider tests and 11 real WPF integration cases, with no failures or skips. Tests use fictional achievements and fake APIs; they never initialize Steam or modify a real account.
+- Nine new regression cases cover account changes after the stats callback, after enumeration, during callback draining, between setters, immediately before StoreStats and during the verification read; login/license/App ID loss is also covered. No success is reported from a different account's refreshed state.
+- WPF tests open the actual application windows with an isolated demo profile. A filtered list with no selection still previews all six missing fixtures. Enter/Escape cancel, explicit confirmation yields 6 successful / 0 failed / 0 unverified, only one dialog appears, and duplicate execution is blocked. The test routes access keys through WPF's presentation source and invokes buttons via their automation peers.
+- Window bounds and reachability of bottom actions are tested against logical work areas corresponding to a 1366 × 768 display at 100/125/150/200% scaling. Focus can move from cancellation to confirmation. These are logical-layout and framework-routing checks, not physical monitor/input tests.
+- Locked restore, formatting, Release build with zero warnings/errors, repository checks and the restored direct/transitive dependency audit pass. [Hosted CI](https://github.com/Memo-B/dragonmark-skyrim-achievement-manager/actions/workflows/ci.yml) runs the same solution, including WPF tests.
+- Release builds map source paths to a neutral root and omit debug metadata. Both packaging and installer compilation scan actual binary contents for local profile paths, Steam identifier patterns and private/debug files. Public captures use fictional Demo Mode data only.
 
-## Real Steam read-only evidence
+## Real Steam evidence
 
-Initialization, expected App ID 489830, login/license/context checks and **75 achievement reads** succeeded on one local installation. The latest icon probe loaded **75/75 current-state Steam achievement icons**, including both locked and unlocked entries. No SetAchievement, ClearAchievement or StoreStats call occurred during that read-only probe. Subsequently, the owner manually tested individual unlocking and Unlock All and reported success; the agent did not perform those writes. The matching native library's origin, SHA-256 and valid Valve signature were checked.
+On one local Windows 11 installation, initialization, App ID 489830, login/license/context checks, **75 achievement reads** and **75/75 current-state icons** succeeded. The native library's official origin, pinned SHA-256 and Valve signature were checked. The read-only probe does not call SetAchievement, ClearAchievement or StoreStats.
 
-Icons are associated by API identifier and current state. Native icon callbacks are matched by game, name and achieved flag. This does not establish that both variants of every icon were independently available or that live writes work. Real account reports and native console output stay outside the public source/package.
+The owner then manually tested individual unlocking and Unlock All and reported both working on 2026-11-09. The agent did not perform those live writes. Independent Steam-profile/restart-persistence evidence was not separately captured. Tests added for 1.0.0 validate failure boundaries without making new account changes.
 
-## Historical UI evidence and current limitation
+## Installer and artifact checks
 
-Before the visual redesign, actual demo UI automation verified a filtered list with no selected rows still previewed all six missing fixtures; cancelling preserved 25% completion, and a separately confirmed demo batch reached 100% with 6 successful / 0 failed / 0 unverified.
+The stable self-contained ZIP and Setup are checked against their SHA-256 sidecars and per-file manifest. Local unattended tests cover the selected Steam download task, offline installation, application launch and uninstallation. The upgrade path from beta.2 to 1.0.0 uses the unchanged application identifier. Installation preserves the user-data folder.
 
-During the final visual pass the Windows helper could inspect the current accessibility tree and set a search value (one visible match), but click input repeatedly failed with **coordinate input geometry is unavailable**. Consequently, current mouse/keyboard interaction, focus traversal and motion timing are not marked fully verified. The new confirmation was rendered and closed without confirmation by the demo capture path. Behavioral tests pass, but do not replace this manual UI pass.
+The pinned Steam component is downloaded only when its visible Setup task is selected and is verified before installation proceeds. It is not embedded in either public package. The self-contained runtime is .NET 10.0.14. The app and installer are unsigned.
 
-## Release blockers and remaining checks
+## Explicit limits
 
-1. Owner-reported live individual unlock and Unlock All success was received on 2026-11-09 after the owner tested the real application. Independent Steam-profile/restart-persistence evidence was not separately captured; broader verification remains pending.
-2. Live ClearAchievement compatibility; the capability remains disabled.
-3. Valve native-library redistribution review; public packages omit it and document separate explicit setup.
-4. Final physical mouse/keyboard, screen-reader, Windows 10, real high-DPI/per-monitor, network interruption and broader account-switch validation.
-5. Hosted CI/release checks and optional signing. The owner authorized source upload and a public beta after their live test; see the repository for current hosted run and release status.
+Windows 10, a separate AE installation, physical per-monitor DPI changes, screen readers and additional real account/network interruption scenarios are not claimed as tested. Framework key-routing tests do not establish all physical keyboard or mouse behavior. Live clearing remains disabled. No universal compatibility, rollback, platform-policy guarantee or security certification is claimed.
 
-The self-contained prerelease package is generated by `scripts/Package.ps1` with runtime 10.0.14, a per-file manifest and archive SHA-256. The extracted artifact must be checked after generation; automated fake tests and successful compilation alone never establish a real Steam write.
-
-## Windows installer verification
-
-The 0.3.0-beta.2 installer was exercised in isolated local directories. The selected Steam task downloaded the exact pinned native binary; installation and a self-contained demo launch exited successfully. Uninstallation removed the application and downloaded native binary. A separate install with the Steam task deselected included no native binary, launched the demo successfully and uninstalled successfully. All process exit codes were zero. These were unattended installer-path tests; they do not claim a full physical keyboard/screen-reader review. The final packaging pass includes the installer compiler license and preserves the same tested install script and application behavior.
+Version 1.0.0 closes the identified account-boundary, small-display and missing-WPF-test findings within the documented scope. [Maintenance policy](../ROADMAP.md) · [Compatibility](compatibility.md) · [Live test plan](LIVE_TEST_PLAN.md).

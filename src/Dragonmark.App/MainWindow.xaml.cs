@@ -14,8 +14,7 @@ public partial class MainWindow : Window
     public MainWindow(MainViewModel viewModel)
     {
         InitializeComponent(); _viewModel = viewModel; DataContext = viewModel;
-        Width = Math.Min(Width, Math.Max(MinWidth, SystemParameters.WorkArea.Width - 32));
-        Height = Math.Min(Height, Math.Max(MinHeight, SystemParameters.WorkArea.Height - 32));
+        WindowLayout.Attach(this);
         CommandBindings.Add(new CommandBinding(ApplicationCommands.Find, (_, _) => SearchBox.Focus()));
         Closing += OnClosing;
         viewModel.PropertyChanged += (_, e) =>

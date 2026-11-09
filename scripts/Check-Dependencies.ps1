@@ -9,7 +9,13 @@ try {
     $report = ($output -join "`n") | ConvertFrom-Json
     New-Item -ItemType Directory -Path artifacts -Force | Out-Null
     $output | Set-Content artifacts/dependency-audit.json -Encoding utf8
-    if (@($report.projects).Count -ne 5 -or !$report.sources) { throw 'Incomplete dependency audit report.' }
+    $expected = @([regex]::Matches((Get-Content Dragonmark.sln -Raw), 'Project\("[^"]+"\) = "[^"]+", "([^"]+\.csproj)",') | ForEach-Object {
+        [IO.Path]::GetFullPath((Join-Path $repo $_.Groups[1].Value))
+    })
+    $audited = @($report.projects | ForEach-Object { [IO.Path]::GetFullPath($_.path) })
+    if (!$expected.Count -or !$report.sources -or $audited.Count -ne $expected.Count -or (Compare-Object $expected $audited)) {
+        throw 'Incomplete dependency audit report: it must cover every solution project.'
+    }
     if (@($report.logs | Where-Object level -eq 'error').Count) { throw 'Dependency audit reported errors.' }
     $findings = @($report.projects.frameworks | ForEach-Object {
         @($_.topLevelPackages) + @($_.transitivePackages) | Where-Object { $_ -and $_.vulnerabilities }

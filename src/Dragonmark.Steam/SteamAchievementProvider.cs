@@ -15,7 +15,7 @@ public sealed class SteamAchievementProvider : IAchievementProvider
     private ulong _user;
     private DateTimeOffset _nextStore;
     private IReadOnlyList<Achievement> _items = [];
-    public ProviderInfo Info { get; private set; } = new("LIVE · Steam · Experimental writes", false, false, "disconnected");
+    public ProviderInfo Info { get; private set; } = new("LIVE · Steam", false, false, "disconnected");
     public event Action<ProviderProgress>? Progress;
     public SteamAchievementProvider(ISteamApi api, Action<string> log, TimeSpan? timeout = null, TimeSpan? storeInterval = null)
     {
@@ -62,9 +62,10 @@ public sealed class SteamAchievementProvider : IAchievementProvider
             while (!_api.PercentagesReady && timer.Elapsed < TimeSpan.FromSeconds(2)) { token.ThrowIfCancellationRequested(); _api.Pump(); Thread.Sleep(20); }
         }
         _items = _api.ReadAchievements(false);
+        ValidateContext();
         if (_items.Count == 0) throw new ProviderException("empty", "Steam exposed no achievements in this context. Live changes are disabled.");
         _ready = true;
-        Report(ConnectionState.Ready, "Live Steam data loaded. Achievement changes have not been validated on this installation.");
+        Report(ConnectionState.Ready, "Live Steam data loaded. Review and confirm any achievement changes.");
         return _items;
     }, token);
 
@@ -87,6 +88,7 @@ public sealed class SteamAchievementProvider : IAchievementProvider
             if (!(userCache ? _api.RequestUserStats() : _api.RequestCurrentStats())) throw new ProviderException("request", "Steam rejected the achievement data request.");
             WaitFor(() => reply is not null, token);
             if (!reply!.Success) throw new ProviderException("stats", "Steam could not refresh achievements: " + reply.Result);
+            ValidateContext();
         }
         finally { _api.StatsReceived -= OnReply; }
     }
@@ -107,6 +109,7 @@ public sealed class SteamAchievementProvider : IAchievementProvider
         Report(ConnectionState.Loading, "Refreshing achievement state from Steam.");
         RequestStats(true, token);
         _items = _api.ReadAchievements(true);
+        ValidateContext();
         Report(ConnectionState.Ready, _uncertain ? "Refreshed. A previous write remains uncertain; further writes are blocked for this session." : "Steam achievement state refreshed.");
         return _items;
     }, token);
@@ -114,13 +117,14 @@ public sealed class SteamAchievementProvider : IAchievementProvider
     public Task<BatchResult> ApplyAsync(ChangePlan plan, bool confirmed, CancellationToken token) => Run(() =>
     {
         if (!confirmed) throw new ProviderException("confirmation", "Explicit confirmation is required before changing Steam data.");
-        if (!_ready) throw new ProviderException("disconnected", "Connect to Steam first.");
         if (_uncertain) throw new ProviderException("uncertain", "An earlier write has an uncertain outcome. Further writes are blocked. Verify your Steam profile before restarting Dragonmark; Steam may persist staged changes on exit.");
+        if (!_ready) throw new ProviderException("disconnected", "Connect to Steam first.");
         if (plan.Kind == ChangeKind.Clear && !Info.CanClear) throw new ProviderException("unsupported", "Individual clearing has not been validated for this integration and is disabled in live mode.");
         ValidateContext();
         if (DateTimeOffset.UtcNow < _nextStore) throw new ProviderException("rate-limit", $"Please wait {Math.Ceiling((_nextStore - DateTimeOffset.UtcNow).TotalSeconds)} seconds before another batch.");
         RequestStats(true, token);
         _items = _api.ReadAchievements(true);
+        ValidateContext();
         plan = OperationPlanner.Create(_items, plan.Targets, plan.Kind);
         token.ThrowIfCancellationRequested();
         if (plan.Targets.Count == 0) return new BatchResult([], _items, false);
@@ -133,18 +137,21 @@ public sealed class SteamAchievementProvider : IAchievementProvider
         // Steam does not provide a store request ID. Serialize stores, drain old callbacks,
         // and permanently block this provider's writes after an ambiguous outcome.
         _api.Pump();
+        ValidateContext();
         _api.StatsStored += OnStored;
         try
         {
             _uncertain = true; // Even an exception after the first native call must not permit a blind retry.
             foreach (string id in plan.Targets)
             {
+                ValidateContext();
                 if (plan.Kind == ChangeKind.Unlock ? _api.SetAchievement(id) : _api.ClearAchievement(id)) accepted.Add(id);
             }
             Report(ConnectionState.ApplyingChanges, $"{accepted.Count}/{plan.Targets.Count} accepted locally. Persistence is not yet confirmed.", OperationPhase.AcceptedLocally, accepted.Count, plan.Targets.Count);
             if (accepted.Count > 0)
             {
                 _nextStore = DateTimeOffset.UtcNow + _storeInterval;
+                ValidateContext();
                 if (!_api.StoreStats()) throw new ProviderException("store", "StoreStats rejected the batch. Local changes may still persist later or on exit.");
                 Report(ConnectionState.ApplyingChanges, "Submitted to Steam. Waiting for the store acknowledgement; this is not verified success.", OperationPhase.Submitted, accepted.Count, plan.Targets.Count);
                 WaitFor(() => stored is not null, CancellationToken.None);
@@ -160,6 +167,7 @@ public sealed class SteamAchievementProvider : IAchievementProvider
                 RequestStats(true, CancellationToken.None);
                 _items = _api.ReadAchievements(true);
             }
+            ValidateContext();
             _uncertain = false;
         }
         catch (Exception e)
@@ -168,7 +176,7 @@ public sealed class SteamAchievementProvider : IAchievementProvider
             _log("Write outcome uncertain: " + e.Message);
             // Refresh the displayed list even on a failed store. A matching read without
             // successful persistence evidence never upgrades an outcome to success.
-            try { RequestStats(true, CancellationToken.None); _items = _api.ReadAchievements(true); }
+            try { ValidateContext(); RequestStats(true, CancellationToken.None); _items = _api.ReadAchievements(true); ValidateContext(); }
             catch (Exception refreshError) { _log("Post-failure refresh unavailable: " + refreshError.Message); }
             // Do not perform a compensating clear/unlock: that would be another unconfirmed mutation.
         }

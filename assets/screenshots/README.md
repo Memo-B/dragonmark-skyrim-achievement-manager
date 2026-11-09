@@ -1,4 +1,4 @@
-# Dragonmark screenshots · 0.3.0-preview.1
+# Dragonmark screenshots · 1.0.0
 
 Every image below is a capture of the actual compiled WPF application. **Demo Mode** is visible in the interface; achievements and illustrations are original fictional fixtures. These are not authenticated Steam outcomes or evidence of live unlock success. Actual Steam icons were retrieved in a separate read-only probe and are not bundled.
 

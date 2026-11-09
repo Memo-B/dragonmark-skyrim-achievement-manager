@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $repo = Split-Path $PSScriptRoot -Parent
 [xml]$properties = Get-Content (Join-Path $repo 'Directory.Build.props')
 $version = [string]$properties.Project.PropertyGroup.Version
-if ($version -notmatch '^\d+\.\d+\.\d+-(preview|beta)\.\d+$') { throw 'Expected the current preview version.' }
+if ($version -notmatch '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-(preview|beta)\.(0|[1-9]\d*))?$') { throw 'Expected the current stable or preview/beta version.' }
 $notes = Get-Content (Join-Path $repo 'RELEASE_NOTES.md') -Raw
 $notes = [regex]::Replace($notes, '(\]\()([^\s)]+)(\))', {
     param($match)

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 — 2026-11-09
+
+- First stable release of the completed Skyrim achievement manager; ongoing work is limited to maintenance.
+- Revalidate account/login/license/App ID after refresh, before each setter and StoreStats, and after verification reads. Stop on context loss and preserve uncertain-write blocking.
+- Constrain windows to the current monitor work area and allow scrolling on smaller displays.
+- Add nine account-boundary regression cases and eleven actual WPF workflow/layout/focus tests; 89 tests in total.
+- Update stable packaging, documentation and current-version screenshots. Preserve pinned dependency downloads, package privacy gates and callback-based persistence verification.
+- Existing real-write evidence remains the owner's successful individual/Unlock All tests. No new automated test writes to a real Steam account; remaining compatibility limits are documented.
 ## 0.3.0-beta.2 — 2026-11-09
 
 - Withdrew the beta.1 binary downloads after finding local build paths in PE debug metadata in four application DLLs.

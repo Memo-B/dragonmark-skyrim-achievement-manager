@@ -17,6 +17,11 @@ internal sealed class FakeSteamApi : ISteamApi
     public int StoreCalls, SetCalls, ClearCalls;
     public bool ForeignCallbackOnly;
     public Action? OnSet;
+    public Action? AfterStatsReply;
+    public Action? OnRead;
+    public Action? AfterPump;
+    public readonly List<ulong> WriteUsers = [];
+    public readonly List<ulong> StoreUsers = [];
     public HashSet<string> Rejected { get; } = [];
     public HashSet<string> Unmatched { get; } = [];
     public bool FailRefreshAfterStore;
@@ -29,15 +34,16 @@ internal sealed class FakeSteamApi : ISteamApi
     public bool RequestCurrentStats() => RequestUserStats();
     public bool RequestUserStats()
     {
-        if (SendStats) _events.Enqueue(() => StatsReceived?.Invoke(new(ForeignCallbackOnly ? 1u : Game.AppId, UserId, StatsSuccess, StatsSuccess ? "OK" : "Fail")));
+        ulong requestedUser = UserId;
+        if (SendStats) _events.Enqueue(() => { StatsReceived?.Invoke(new(ForeignCallbackOnly ? 1u : Game.AppId, requestedUser, StatsSuccess, StatsSuccess ? "OK" : "Fail")); AfterStatsReply?.Invoke(); });
         return true;
     }
     public bool RequestPercentages() => true;
-    public void Pump() { if (_events.TryDequeue(out var action)) action(); }
-    public IReadOnlyList<Achievement> ReadAchievements(bool userCache) => Items.ToArray();
+    public void Pump() { if (_events.TryDequeue(out var action)) action(); AfterPump?.Invoke(); }
+    public IReadOnlyList<Achievement> ReadAchievements(bool userCache) { var result = Items.ToArray(); OnRead?.Invoke(); return result; }
     public bool SetAchievement(string id)
     {
-        SetCalls++; OnSet?.Invoke();
+        WriteUsers.Add(UserId); SetCalls++; OnSet?.Invoke();
         if (Rejected.Contains(id)) return false;
         _staged.Add(id); return true;
     }
@@ -45,6 +51,7 @@ internal sealed class FakeSteamApi : ISteamApi
     public bool StoreStats()
     {
         StoreCalls++;
+        StoreUsers.Add(UserId);
         if (!StoreAccepted) return false;
         if (SendStore) _events.Enqueue(() =>
         {

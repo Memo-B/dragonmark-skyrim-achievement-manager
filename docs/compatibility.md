@@ -15,7 +15,8 @@ Evidence recorded on **2026-11-09**. Target support is not equivalent to a compl
 | Live clearing | Not enabled | Awaiting validation |
 | Original Skyrim / VR / other stores / consoles | Unsupported | Different app/platform contexts |
 | SKSE | No dependency | No plugin or bridge implemented |
-| High DPI / screen readers / account switching / offline recovery | Further testing required | Fake-API coverage does not replace manual environment tests |
+| Logical display layouts and WPF key routing | 100/125/150/200% equivalent work areas | Automated window bounds, reachable actions, cancellation and focus tests passed |
+| Physical per-monitor DPI / screen readers / account switching / offline recovery | Broader environment testing required | Framework/fake-API coverage does not replace real environment tests |
 
 Steam must run under the same Windows user and elevation, with a valid license and authenticated client. Skyrim itself is not launched or injected into by Dragonmark. No universal standalone Steamworks availability is promised.
 
@@ -23,4 +24,4 @@ All app-owned labels, errors and dialogs are English. Steam controls localized a
 
 Consult [validation evidence](VALIDATION.md) and [Steam investigation](STEAM_INTEGRATION.md). The TFM's default `windows7.0` metadata in generated assets does not establish Windows 7 support; the actual .NET runtime support matrix governs deployment. See [Microsoft's .NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core).
 
-The 0.3 visual pass rendered 1100 × 740 and 1440 × 960 window layouts, with a 96-DPI measured WPF environment and an additional 150% raster check. Real per-monitor DPI, physical keyboard/focus and screen-reader checks remain pending. See [visual validation](visual-design.md).
+The 0.3 visual pass rendered 1100 × 740 and 1440 × 960 window layouts, with a 96-DPI measured WPF environment and an additional 150% raster check. Version 1.0.0 additionally tests constrained logical work areas, WPF Enter/Escape routing and focus traversal. Physical per-monitor DPI/input and screen-reader checks remain unverified. See [visual validation](visual-design.md).
