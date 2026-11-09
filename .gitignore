@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+publish/
+artifacts/
+TestResults/
+.vs/
+.idea/
+*.user
+*.suo
+*.log
+*.dmp
+*.tmp
+*.zip
+native/*.dll
+native/*.download
+.env*
+!.env.example

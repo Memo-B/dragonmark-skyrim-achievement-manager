@@ -1,0 +1,26 @@
+{
+  "product": "Dragonmark",
+  "subtitle": "Skyrim Achievement Manager",
+  "repository": "Memo-B/dragonmark-skyrim-achievement-manager",
+  "description": "Open-source Skyrim SE/AE Steam achievement manager for Windows. Browse achievements and unlock selected or all missing entries with one explicit confirmation. Windows installer available.",
+  "homepage": null,
+  "topics": [
+    "skyrim",
+    "skyrim-special-edition",
+    "skyrim-anniversary-edition",
+    "steam",
+    "steamworks",
+    "achievements",
+    "achievement-manager",
+    "achievement-unlocker",
+    "windows",
+    "dotnet",
+    "csharp",
+    "wpf",
+    "desktop-application",
+    "gaming-tools",
+    "open-source"
+  ],
+  "observedOn": "2026-11-09",
+  "publicationState": "Public beta release authorized by the owner after successful live testing."
+}

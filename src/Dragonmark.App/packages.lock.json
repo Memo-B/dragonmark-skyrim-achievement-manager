@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0-windows7.0": {
+      "Steamworks.NET": {
+        "type": "Transitive",
+        "resolved": "2024.8.0",
+        "contentHash": "FHTj80ZyT09d0XwSnhE8+e6r/hwpp1+PmQ3RZbUqlyEQCVNrWDVmdA1ElIgQgx72XGIkF947kXL53z51puGD2g=="
+      },
+      "dragonmark.core": {
+        "type": "Project"
+      },
+      "dragonmark.infrastructure": {
+        "type": "Project",
+        "dependencies": {
+          "Dragonmark.Core": "[0.2.0-preview.1, )"
+        }
+      },
+      "dragonmark.steam": {
+        "type": "Project",
+        "dependencies": {
+          "Dragonmark.Core": "[0.2.0-preview.1, )",
+          "Dragonmark.Infrastructure": "[0.2.0-preview.1, )",
+          "Steamworks.NET": "[2024.8.0, )"
+        }
+      }
+    },
+    "net10.0-windows7.0/win-x64": {
+      "Steamworks.NET": {
+        "type": "Transitive",
+        "resolved": "2024.8.0",
+        "contentHash": "FHTj80ZyT09d0XwSnhE8+e6r/hwpp1+PmQ3RZbUqlyEQCVNrWDVmdA1ElIgQgx72XGIkF947kXL53z51puGD2g=="
+      }
+    }
+  }
+}

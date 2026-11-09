@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+*.ico binary
+*.zip binary
+*.dll binary
+*.sln text eol=crlf
+# Retain upstream license notice formatting verbatim.
+licenses/** whitespace=-blank-at-eol,-blank-at-eof
